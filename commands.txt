@@ -1,0 +1,14 @@
+confluent kafka topic list
+kafka-topics --list --bootstrap-server localhost:9092
+
+confluent kafka topic consume --from-beginning poems
+kafka-console-consumer.sh --bootstrap-server HOST1:PORT1,HOST2:PORT2 --consumer.config config.properties --topic testTopic --property "print.key=true" --from-beginning
+
+confluent kafka topic describe poems
+kafka-topics --describe --topic poems --bootstrap-server localhost:9092
+
+confluent kafka topic create --partitions 1 poems_1
+confluent kafka topic create --partitions 4 poems_4
+
+confluent kafka topic produce poems_1 --parse-key
+kafka-console-producer --topic poems_1 --property "parse.key=true" --property "key.separator=:" --bootstrap-server localhost:9092
